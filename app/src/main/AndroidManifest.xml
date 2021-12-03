@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="it.mirea.moskovsky">
+    package="it.mirea.sannikov">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -14,12 +14,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android_mireaHomework_fourth">
+        android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".CameraActivity"
+            android:name="it.mirea.sannikov.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="it.mirea.sannikov.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

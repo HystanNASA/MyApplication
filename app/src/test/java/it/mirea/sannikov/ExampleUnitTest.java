@@ -1,4 +1,4 @@
-package it.mirea.moskovsky;
+package it.mirea.sannikov;
 
 import org.junit.Test;
 

@@ -1,6 +1,4 @@
-package it.mirea.moskovsky;
-
-import static java.sql.DriverManager.println;
+package it.mirea.sannikov;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +7,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,11 +14,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,14 +24,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PERMISSION_READ_CONTACTS = 1;
-    // уведомления
     private Button buttonNotify;
     private NotificationManager nm;
     public static final String CAHNNEL_ID = "default_channel_id";
-    private final int Notification_Id = 1;// уникальность уведомления
-
-    //камера
-
+    private final int Notification_Id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,28 +73,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show() {
-        //Notification.Builder builder = new Notification.Builder(getApplicationContext()); // позволит хар нашего уведомления
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT); // запускается, при нажатии на уведомление
-        //FLAG_UPDATE_CURRENT - если было старое уведомление, то должно создаваться новое
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(getApplicationContext(), CAHNNEL_ID)
-                        .setContentIntent(pendingIntent) // откроет активити, при tape
-                        .setSmallIcon(R.drawable.ic_launcher_background) // иконка
-                        .setTicker("У вас новое уведомление \uD83E\uDD7A") // сверху уведомление
-                        .setContentTitle("ИКБО-06-20") // Заголовок уведомления
-                        .setContentText("Московский Антон Александрович")
-                        .setWhen(System.currentTimeMillis()) // время
-                        .setAutoCancel(true); // чтобы закрывался автоматически
+                        .setContentIntent(pendingIntent)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setTicker("У вас новое уведомление \uD83E\uDD7A")
+                        .setContentTitle("ИКБО-06-20")
+                        .setContentText("Санников Роман Владимирович")
+                        .setWhen(System.currentTimeMillis())
+                        .setAutoCancel(true);
 
-        Notification notification = notificationBuilder.build(); // сборка проектов
+        Notification notification = notificationBuilder.build();
         createChannelIfNeeded(nm);
         nm.notify(Notification_Id, notification);
 
 
     }
 
-    public static void createChannelIfNeeded(NotificationManager manager) { // метод от 8 версий андроид
+    public static void createChannelIfNeeded(NotificationManager manager) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel(CAHNNEL_ID, CAHNNEL_ID, NotificationManager.IMPORTANCE_DEFAULT);
             manager.createNotificationChannel(notificationChannel);
@@ -116,7 +105,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(intent);
         startActivity(intent1);
-
     }
-
 }

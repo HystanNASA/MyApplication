@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android_mireaHomework_fourth</string>
+    <string name="app_name">MyApplication</string>
     <string name="notify_text">Уведомление</string>
     <string name="camera_text">Камера</string>
     <string name="text_camera">Камера</string>
